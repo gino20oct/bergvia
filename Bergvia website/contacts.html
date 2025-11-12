@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacts - Bergvia Family Office</title>
+  <style>
+    /* --- General Body & Font Styles --- */
+    body {
+      font-family: serif;
+      background-color: #0d0d0d;
+      color: #b0b0b0;
+      margin: 0;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    /* --- Header & Navigation (Floating) --- */
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 60px;
+      box-sizing: border-box;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-left, .nav-right { display: flex; align-items: center; width: 33.33%; }
+    .nav-right { justify-content: flex-end; }
+    .logo { display: flex; justify-content: center; width: 33.33%; }
+    .logo img { height: 85px; width: auto; }
+    nav a { margin: 0 20px; text-decoration: none; color: #e0e0e0; font-family: sans-serif; font-size: 16px; letter-spacing: 1px; transition: color 0.3s; }
+    nav a:hover, nav a.active { color: #ffffff; text-decoration: underline; }
+    
+    /* --- Top Image Section with Title Inside --- */
+    .page-hero {
+      height: 45vh;
+      min-height: 350px;
+      background-image: url('images/Other pages.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      
+      display: flex;
+      align-items: flex-end; /* Aligns content to the bottom */
+      box-sizing: border-box;
+      padding-bottom: 40px; /* Space from the bottom edge */
+    }
+
+    /* --- NEW: Shared Container for Alignment --- */
+    .content-container {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 60px; /* Adjust this value to control space from left/right edges */
+      padding-right: 60px; /* Adjust this value to control space from left/right edges */
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .page-hero h1 {
+        font-size: 42px;
+        font-weight: normal;
+        color: #ffffff;
+        margin: 0;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        text-align: right; /* Aligns the title to the right */
+        border-bottom: 1px solid #555; /* Optional: adds a line under the title */
+        padding-bottom: 20px;
+	margin-right: 680px;
+    }
+
+    /* --- Main Content Area for Inner Pages --- */
+    .page-content-wrapper {
+        margin-top: 80px;
+    }
+
+    .page-content-wrapper p {
+        margin-bottom: 20px;
+    }
+
+    /* Style for links within the text */
+    a { color: #e0e0e0; text-decoration: none; }
+    header a:hover, .footer-nav a:hover { color: #ffffff; }
+    .content-container a { border-bottom: 1px dotted #777; }
+    .content-container a:hover { border-bottom: 1px solid #ffffff; }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 40px 20px;
+      background-color: #1a1a1a;
+      border-top: 1px solid #333;
+      margin-top: 100px;
+      font-family: sans-serif;
+    }
+
+    .footer-nav a { color: #b0b0b0; text-decoration: none; margin: 0 15px; transition: color 0.3s; }
+    .copyright { margin-top: 20px; color: #777; }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav-left">
+      <a href="index.html">Bergvia</a> 
+      <a href="about.html">About</a> 
+      <a href="investments.html">Investments</a>
+    </nav>
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Family Office Logo">
+      </a>
+    </div>
+    <nav class="nav-right">
+      <a href="contacts.html" class="active">Contacts</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Top Image Section -->
+    <section class="page-hero">
+      <!-- The shared container positions the h1 correctly -->
+      <div class="content-container">
+        <h1>Contact</h1>
+      </div>
+    </section>
+
+    <!-- Page Content Section -->
+    <div class="page-content-wrapper">
+      <!-- The same shared container aligns the text below -->
+      <div class="content-container">
+          <p>
+            At Bergvia Family Office, we value meaningful relationships and long-term partnerships.
+          </p>
+          <p>
+            For any inquiries related to our activities, investment approach, or collaborations, please contact us by email. We welcome introductions that align with our values and our focus on sustainable, long-term value creation.
+          </p>
+          <p>
+            <strong>Bergvia Family Office</strong><br>
+            Switzerland<br>
+            📧 <a href="mailto:info@bergvia.com">info@bergvia.com</a>
+          </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="investments.html">Investments</a>
+      <a href="contacts.html">Contacts</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <p class="copyright">
+      © 2025, Bergvia Family Office. All Rights Reserved.
+    </p>
+  </footer>
+
+</body>
+</html>

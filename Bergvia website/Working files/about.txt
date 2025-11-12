@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - Bergvia Family Office</title>
+  <style>
+    /* --- General Body & Font Styles --- */
+    body {
+      font-family: serif;
+      background-color: #0d0d0d;
+      color: #b0b0b0;
+      margin: 0;
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    /* --- Header & Navigation --- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 60px;
+      border-bottom: 1px solid #333;
+    }
+
+    .logo img {
+      height: 55px; /* LOGO SIZE INCREASED */
+      width: auto;
+    }
+
+    nav a {
+      margin-left: 35px;
+      text-decoration: none;
+      color: #e0e0e0;
+      font-family: sans-serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    
+    /* --- Main Content Area --- */
+    main {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 40px;
+    }
+    
+    h1 {
+        font-size: 38px;
+        font-weight: normal;
+        color: #ffffff;
+        margin-bottom: 40px;
+        border-bottom: 1px solid #333;
+        padding-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+
+    ul {
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 15px;
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 40px 20px;
+      background-color: #1a1a1a;
+      border-top: 1px solid #333;
+      margin-top: 100px;
+      font-family: sans-serif;
+    }
+
+    .footer-nav a {
+      color: #b0b0b0;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s;
+    }
+    
+    .footer-nav a:hover {
+      color: #ffffff;
+    }
+
+    .copyright {
+      margin-top: 20px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Family Office Logo">
+      </a>
+    </div>
+    <nav>
+      <a href="index.html">Bergvia</a> 
+      <!-- "active" class is now on the About link -->
+      <a href="about.html" class="active">About</a> 
+      <a href="investments.html">Investments</a>
+      <a href="contacts.html">Contacts</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>A Family Perspective on Long-Term Value</h1>
+    <p>
+      Founded and managed by our family, Bergvia reflects a cross-generational vision rooted in the Swiss and Italian Alps, a place where stability, resilience and foresight are part of the landscape.
+    </p>
+    <p>
+      We invest our own capital to preserve and grow the family’s assets while supporting innovation and responsible progress.
+    </p>
+    <p>Our philosophy is guided by three principles:</p>
+    <ul>
+      <li><strong>Long-term orientation</strong> — patient capital focused on sustainable value creation.</li>
+      <li><strong>Entrepreneurial mindset</strong> — active ownership and hands-on partnership with founders and managers.</li>
+      <li><strong>Responsible growth</strong> — contributing to the communities and environment in which we operate.</li>
+    </ul>
+  </main>
+
+  <footer>
+    <div class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="investments.html">Investments</a>
+      <a href="contacts.html">Contacts</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <p class="copyright">
+      © 2025, Bergvia Family Office. All Rights Reserved.
+    </p>
+  </footer>
+
+</body>
+</html>

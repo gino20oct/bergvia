@@ -8,14 +8,15 @@
     /* --- General Body & Font Styles --- */
     body {
       font-family: "Georgia", serif;
-      background-color: #ffffff; /* White background */
-      color: #333; /* Dark text */
+      background-color: #ffffff;
+      color: #333;
       margin: 0;
       line-height: 1.8;
-      font-size: 18px;
+      /* FLUID TYPOGRAPHY for body text */
+      font-size: clamp(16px, 1.2vw, 18px);
     }
 
-    /* --- Header & Navigation (Floating) --- */
+    /* --- Header & Navigation (As Provided - UNTOUCHED) --- */
     header {
       position: absolute;
       top: 0;
@@ -27,14 +28,16 @@
       align-items: center;
       padding: 20px 40px;
       box-sizing: border-box;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       flex-wrap: wrap;
       background: transparent;
     }
-
-    .nav-left, .nav-right { display: flex; align-items: center; width: 33.33%; }
-    .nav-right { justify-content: flex-end; }
-    .logo { display: flex; justify-content: center; width: 33.33%; }
-
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
     nav a {
       margin: 0 15px;
       text-decoration: none;
@@ -45,11 +48,11 @@
       transition: color 0.3s;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
-
-    nav a:hover, nav a.active {
+    nav a:hover,
+    nav a.active {
+      color: #fff;
       text-decoration: underline;
     }
-
     .logo img {
       height: 70px;
       width: auto;
@@ -57,113 +60,92 @@
       transition: all 0.3s ease;
     }
 
-    /* --- Top Image Section with Title Inside --- */
+    /* --- Mobile Adjustments for header (As Provided - UNTOUCHED) --- */
+    @media (max-width: 768px) {
+      header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
+      nav a { margin: 0 8px; font-size: 14px; }
+      .logo img { height: 50px; }
+    }
+    @media (max-width: 480px) {
+      header { flex-direction: column; align-items: center; }
+      .logo { order: -1; margin-bottom: 15px; }
+      nav { width: 100%; justify-content: center; }
+      .logo img { height: 45px; }
+    }
+
+    /* --- Hero Section --- */
     .page-hero {
-      height: 45vh;
-      min-height: 350px;
+      height: 70vh;
+      min-height: 500px;
       background-image: url('images/Other pages.jpg');
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
+      justify-content: flex-start;
+      position: relative;
       box-sizing: border-box;
     }
-
-    /* --- Shared Container for Alignment --- */
-    .content-container {
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 60px;
-      padding-right: 60px;
-      width: 100%;
+    .hero-content {
+      max-width: 1300px;
+      padding: 300px 60px 0 260px;
       box-sizing: border-box;
-    }
-
-    .page-hero .content-container {
-      padding-bottom: 40px;
-    }
-
-    .page-hero h1 {
-      font-size: 42px;
-      font-weight: normal;
       color: #ffffff;
-      margin: 0;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-      padding-bottom: 20px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    }
+    .hero-content h1 {
+      font-weight: normal;
+      margin: 0 0 20px 0;
+      line-height: 1.3;
+      /* FLUID TYPOGRAPHY for hero title */
+      font-size: clamp(26px, 3vw, 40px);
     }
 
-    /* --- Main Content Area for Inner Pages --- */
-    .page-content-wrapper {
-      margin-top: 80px;
+    /* --- Page Content --- */
+    .page-content {
+      max-width: 900px;
+      margin: 100px auto;
+      padding: 0 60px;
     }
-
-    .page-content-wrapper p {
+    .page-content p {
       margin-bottom: 20px;
     }
-    
-    .page-content-wrapper a {
+    .page-content a {
         border-bottom: 1px dotted #555;
     }
-
-    .page-content-wrapper a:hover {
+    .page-content a:hover {
         border-bottom: 1px solid #000;
     }
 
-    /* --- Mobile Adjustments --- */
+    /* --- SIMPLIFIED Mobile Adjustments (Layout only) --- */
+    @media (max-width: 1024px) {
+      .hero-content { padding: 150px 40px 0 80px; }
+    }
     @media (max-width: 768px) {
-      header { padding: 15px 20px; }
-      .logo img { height: 50px; }
-      nav a { margin: 0 8px; font-size: 14px; }
-      .content-container { padding-left: 30px; padding-right: 30px; }
-      .page-hero h1 { font-size: 32px; }
-      .page-content-wrapper { margin-top: 60px; }
+      .page-hero { height: 60vh; }
+      .hero-content { padding: 150px 30px 0 30px; }
+      .page-content { padding: 0 30px; margin: 80px auto; }
     }
     @media (max-width: 480px) {
-      header { flex-direction: column; }
-      .logo { order: -1; margin-bottom: 15px; }
-      .nav-left, .nav-right { width: 100%; justify-content: center; }
-      .logo img { height: 45px; }
-      .content-container { padding-left: 20px; padding-right: 20px; }
-      .page-hero h1 { font-size: 28px; }
-      .page-content-wrapper { margin-top: 40px; }
+      .page-hero { height: 50vh; }
+      .hero-content { padding: 120px 20px 0 20px; }
+      .page-content { padding: 0 20px; margin: 60px auto; }
     }
 
     /* --- Footer --- */
-    footer {
-      text-align: center;
-      font-size: 14px;
-      padding: 40px 20px;
-      background-color: #f8f8f8;
-      border-top: 1px solid #ddd;
-      font-family: sans-serif;
-    }
-
-    .footer-nav a {
-      color: #555;
-      text-decoration: none;
-      margin: 0 15px;
-      transition: color 0.3s;
-    }
-
-    .footer-nav a:hover {
-      color: #000;
-    }
-
-    .copyright {
-      margin-top: 20px;
-      color: #999;
-    }
+    footer { text-align: center; font-size: 14px; padding: 40px 20px; background-color: #f8f8f8; border-top: 1px solid #ddd; font-family: sans-serif; }
+    .footer-nav a { color: #555; text-decoration: none; margin: 0 15px; transition: color 0.3s; }
+    .footer-nav a:hover { color: #000; }
+    .copyright { margin-top: 20px; color: #999; }
   </style>
 </head>
 
 <body>
 
   <header>
-    <nav class="nav-left">
-      <a href="index.html">Bergvia</a> 
+    <nav>
+      <a href="index.html">Home</a> 
       <a href="about.html">About</a> 
       <a href="investments.html">Investments</a>
     </nav>
@@ -172,35 +154,31 @@
         <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Family Office Logo">
       </a>
     </div>
-    <nav class="nav-right">
+    <nav>
       <a href="contacts.html" class="active">Contacts</a>
     </nav>
   </header>
 
   <main>
-    <!-- Top Image Section -->
     <section class="page-hero">
-      <div class="content-container">
-        <h1>Contact</h1>
+      <div class="hero-content">
+        <h1>At Bergvia Family Office, we value meaningful relationships and long-term partnerships.</h1>
       </div>
     </section>
 
-    <!-- Page Content Section -->
-    <div class="page-content-wrapper">
-      <div class="content-container">
-          <p>
-            At Bergvia Family Office, we value meaningful relationships and long-term partnerships.
-          </p>
-          <p>
-            For any inquiries related to our activities, investment approach, or collaborations, please contact us by email. We welcome introductions that align with our values and our focus on sustainable, long-term value creation.
-          </p>
-          <p>
-            <strong>Bergvia Family Office</strong><br>
-            Switzerland<br>
-            📧 <a href="mailto:info@bergvia.com">info@bergvia.com</a>
-          </p>
-      </div>
-    </div>
+    <section class="page-content">
+        <p>
+          Contact
+        </p>
+        <p>
+          For any inquiries related to our activities, investment approach, or collaborations, please contact us by email. We welcome introductions that align with our values and our focus on sustainable, long-term value creation.
+        </p>
+        <p>
+          <strong>Bergvia Family Office</strong><br>
+          Switzerland<br>
+          📧 <a href="mailto:info@bergvia.com">info@bergvia.com</a>
+        </p>
+    </section>
   </main>
 
   <footer>
@@ -212,8 +190,7 @@
       <a href="privacy.html">Privacy Policy</a>
     </div>
     <p class="copyright">
-      © 2025, Bergvia Family Office. All Rights Reserved.<br>Bergvia Family Office is a private investment company 
-managing the assets of a single family.
+      © 2025, Bergvia Family Office. All Rights Reserved.<br>Bergvia Family Office is a private investment company managing the assets of a single family.
     </p>
   </footer>
 

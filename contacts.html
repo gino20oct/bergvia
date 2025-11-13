@@ -7,9 +7,9 @@
   <style>
     /* --- General Body & Font Styles --- */
     body {
-      font-family: serif;
-      background-color: #0d0d0d;
-      color: #b0b0b0;
+      font-family: "Georgia", serif;
+      background-color: #ffffff; /* White background */
+      color: #333; /* Dark text */
       margin: 0;
       line-height: 1.8;
       font-size: 18px;
@@ -25,18 +25,38 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 30px 60px;
+      padding: 20px 40px;
       box-sizing: border-box;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      background: transparent;
     }
 
     .nav-left, .nav-right { display: flex; align-items: center; width: 33.33%; }
     .nav-right { justify-content: flex-end; }
     .logo { display: flex; justify-content: center; width: 33.33%; }
-    .logo img { height: 85px; width: auto; }
-    nav a { margin: 0 20px; text-decoration: none; color: #e0e0e0; font-family: sans-serif; font-size: 16px; letter-spacing: 1px; transition: color 0.3s; }
-    nav a:hover, nav a.active { color: #ffffff; text-decoration: underline; }
-    
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #ffffff; /* White text for floating header */
+      font-family: sans-serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    nav a:hover, nav a.active {
+      text-decoration: underline;
+    }
+
+    .logo img {
+      height: 70px;
+      width: auto;
+      max-width: 100%;
+      transition: all 0.3s ease;
+    }
+
     /* --- Top Image Section with Title Inside --- */
     .page-hero {
       height: 45vh;
@@ -45,64 +65,97 @@
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
-      
       display: flex;
-      align-items: flex-end; /* Aligns content to the bottom */
+      align-items: flex-end;
       box-sizing: border-box;
-      padding-bottom: 40px; /* Space from the bottom edge */
     }
 
-    /* --- NEW: Shared Container for Alignment --- */
+    /* --- Shared Container for Alignment --- */
     .content-container {
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
-      padding-left: 60px; /* Adjust this value to control space from left/right edges */
-      padding-right: 60px; /* Adjust this value to control space from left/right edges */
+      padding-left: 60px;
+      padding-right: 60px;
       width: 100%;
       box-sizing: border-box;
     }
 
+    .page-hero .content-container {
+      padding-bottom: 40px;
+    }
+
     .page-hero h1 {
-        font-size: 42px;
-        font-weight: normal;
-        color: #ffffff;
-        margin: 0;
-        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        text-align: right; /* Aligns the title to the right */
-        border-bottom: 1px solid #555; /* Optional: adds a line under the title */
-        padding-bottom: 20px;
-	margin-right: 680px;
+      font-size: 42px;
+      font-weight: normal;
+      color: #ffffff;
+      margin: 0;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 20px;
     }
 
     /* --- Main Content Area for Inner Pages --- */
     .page-content-wrapper {
-        margin-top: 80px;
+      margin-top: 80px;
     }
 
     .page-content-wrapper p {
-        margin-bottom: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .page-content-wrapper a {
+        border-bottom: 1px dotted #555;
     }
 
-    /* Style for links within the text */
-    a { color: #e0e0e0; text-decoration: none; }
-    header a:hover, .footer-nav a:hover { color: #ffffff; }
-    .content-container a { border-bottom: 1px dotted #777; }
-    .content-container a:hover { border-bottom: 1px solid #ffffff; }
+    .page-content-wrapper a:hover {
+        border-bottom: 1px solid #000;
+    }
+
+    /* --- Mobile Adjustments --- */
+    @media (max-width: 768px) {
+      header { padding: 15px 20px; }
+      .logo img { height: 50px; }
+      nav a { margin: 0 8px; font-size: 14px; }
+      .content-container { padding-left: 30px; padding-right: 30px; }
+      .page-hero h1 { font-size: 32px; }
+      .page-content-wrapper { margin-top: 60px; }
+    }
+    @media (max-width: 480px) {
+      header { flex-direction: column; }
+      .logo { order: -1; margin-bottom: 15px; }
+      .nav-left, .nav-right { width: 100%; justify-content: center; }
+      .logo img { height: 45px; }
+      .content-container { padding-left: 20px; padding-right: 20px; }
+      .page-hero h1 { font-size: 28px; }
+      .page-content-wrapper { margin-top: 40px; }
+    }
 
     /* --- Footer --- */
     footer {
       text-align: center;
       font-size: 14px;
       padding: 40px 20px;
-      background-color: #1a1a1a;
-      border-top: 1px solid #333;
-      margin-top: 100px;
+      background-color: #f8f8f8;
+      border-top: 1px solid #ddd;
       font-family: sans-serif;
     }
 
-    .footer-nav a { color: #b0b0b0; text-decoration: none; margin: 0 15px; transition: color 0.3s; }
-    .copyright { margin-top: 20px; color: #777; }
+    .footer-nav a {
+      color: #555;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s;
+    }
+
+    .footer-nav a:hover {
+      color: #000;
+    }
+
+    .copyright {
+      margin-top: 20px;
+      color: #999;
+    }
   </style>
 </head>
 
@@ -127,7 +180,6 @@
   <main>
     <!-- Top Image Section -->
     <section class="page-hero">
-      <!-- The shared container positions the h1 correctly -->
       <div class="content-container">
         <h1>Contact</h1>
       </div>
@@ -135,7 +187,6 @@
 
     <!-- Page Content Section -->
     <div class="page-content-wrapper">
-      <!-- The same shared container aligns the text below -->
       <div class="content-container">
           <p>
             At Bergvia Family Office, we value meaningful relationships and long-term partnerships.

@@ -7,9 +7,9 @@
   <style>
     /* --- General Body & Font Styles --- */
     body {
-      font-family: serif;
-      background-color: #0d0d0d;
-      color: #b0b0b0;
+      font-family: "Georgia", serif;
+      background-color: #ffffff;
+      color: #333;
       margin: 0;
       line-height: 1.8;
       font-size: 18px;
@@ -27,7 +27,7 @@
       align-items: center;
       padding: 20px 40px;
       box-sizing: border-box;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       flex-wrap: wrap;
       background: transparent;
     }
@@ -42,7 +42,7 @@
     nav a {
       margin: 0 15px;
       text-decoration: none;
-      color: #e0e0e0;
+      color: #333;
       font-family: sans-serif;
       font-size: 16px;
       letter-spacing: 1px;
@@ -51,13 +51,15 @@
 
     nav a:hover,
     nav a.active {
-      color: #ffffff;
+      color: #000;
       text-decoration: underline;
     }
 
     .logo img {
       height: 70px;
       width: auto;
+      max-width: 100%;
+      transition: all 0.3s ease;
     }
 
     /* --- Mobile Adjustments --- */
@@ -112,11 +114,11 @@
       padding: 25vh 60px 60px 300px;
       position: relative;
       color: #ffffff;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     }
 
     .full-screen-hero h1 {
-      font-size: 78px;
+      font-size: 72px;
       font-weight: normal;
       max-width: 900px;
       margin: 0;
@@ -133,13 +135,13 @@
     .hero-footer hr {
       border: none;
       height: 1px;
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.5);
       margin-bottom: 20px;
     }
 
     .hero-footer p {
       max-width: 700px;
-      font-size: 19px;
+      font-size: 22px;
       line-height: 1.4;
       margin: 0;
     }
@@ -190,25 +192,26 @@
       text-align: center;
       font-size: 14px;
       padding: 40px 20px;
-      background-color: #1a1a1a;
-      border-top: 1px solid #333;
+      background-color: #ffffff;
+      border-top: 1px solid #ddd;
       font-family: sans-serif;
+      color: #555;
     }
 
     .footer-nav a {
-      color: #b0b0b0;
+      color: #555;
       text-decoration: none;
       margin: 0 15px;
       transition: color 0.3s;
     }
 
     .footer-nav a:hover {
-      color: #ffffff;
+      color: #000;
     }
 
     .copyright {
       margin-top: 20px;
-      color: #777;
+      color: #888;
     }
 
     /* --- Cookie Banner Styles --- */
@@ -217,8 +220,8 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      background-color: #1a1a1a;
-      border-top: 1px solid #333;
+      background-color: #ffffff;
+      border-top: 1px solid #ddd;
       padding: 20px;
       box-sizing: border-box;
       display: none;
@@ -228,22 +231,19 @@
       z-index: 1000;
       font-family: sans-serif;
       font-size: 14px;
-    }
-
-    #cookie-banner p {
-      margin: 0 20px 0 0;
-      color: #b0b0b0;
+      color: #333;
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
     }
 
     #cookie-banner a {
-      color: #e0e0e0;
+      color: #333;
       text-decoration: underline;
     }
 
     .cookie-buttons button {
-      background-color: #333;
-      color: #ffffff;
-      border: 1px solid #555;
+      background-color: #eaeaea;
+      color: #333;
+      border: 1px solid #ccc;
       padding: 10px 20px;
       margin-left: 10px;
       cursor: pointer;
@@ -252,12 +252,12 @@
     }
 
     .cookie-buttons button:hover {
-      background-color: #555;
+      background-color: #ddd;
     }
 
     .cookie-buttons #accept-cookies {
-      background-color: #b0b0b0;
-      color: #0d0d0d;
+      background-color: #333;
+      color: #fff;
       font-weight: bold;
     }
   </style>
@@ -287,7 +287,10 @@
       <div class="hero-footer">
         <hr>
         <p>
-          Bergvia Family Office is a privately held investment company managing the assets and long-term interests of our family. At Bergvia Family Office we invest across real estate, public markets and private equity to create lasting value for our future generations, the communities where we live and the natural environment that sustains us. <br>Our approach combines an entrepreneurial mindset with the discipline of long-term capital investment.
+          Bergvia Family Office is a privately held investment company managing the assets and long-term interests of our family.
+          At Bergvia Family Office we invest across real estate, public markets and private equity to create lasting value for our
+          future generations, the communities where we live and the natural environment that sustains us. <br>
+          Our approach combines an entrepreneurial mindset with the discipline of long-term capital investment.
         </p>
       </div>
     </section>
@@ -306,7 +309,7 @@
     </p>
   </footer>
 
-  <!-- Cookie Banner HTML -->
+  <!-- Cookie Banner -->
   <div id="cookie-banner">
     <p>This website uses Google Analytics to collect anonymous visitor statistics. See our <a href="privacy.html">Privacy Policy</a> for more details.</p>
     <div class="cookie-buttons">
@@ -316,8 +319,9 @@
   </div>
 
   <script>
-    // Cookie Banner Javascript
-    const GA_MEASUREMENT_ID = 'YOUR_GA_MEASUREMENT_ID'; // <-- IMPORTANT: REPLACE THIS!
+    // --- Cookie Banner Logic ---
+    const GA_MEASUREMENT_ID = 'YOUR_GA_MEASUREMENT_ID'; // Replace with your actual ID
+
     function setCookie(name, value, days) {
       let expires = "";
       if (days) {
@@ -341,7 +345,7 @@
 
     function loadGoogleAnalytics() {
       if (GA_MEASUREMENT_ID === 'YOUR_GA_MEASUREMENT_ID') {
-        console.warn('Google Analytics is not loaded. Please replace YOUR_GA_MEASUREMENT_ID.');
+        console.warn('Google Analytics is not loaded. Replace YOUR_GA_MEASUREMENT_ID.');
         return;
       }
       const script = document.createElement('script');

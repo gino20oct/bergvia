@@ -7,9 +7,9 @@
   <style>
     /* --- General Body & Font Styles --- */
     body {
-      font-family: serif;
-      background-color: #0d0d0d;
-      color: #b0b0b0;
+      font-family: "Georgia", serif;
+      background-color: #ffffff; /* White background */
+      color: #333; /* Dark text */
       margin: 0;
       line-height: 1.8;
       font-size: 18px;
@@ -20,35 +20,29 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 30px 60px;
-      border-bottom: 1px solid #333;
+      padding: 20px 40px;
+      box-sizing: border-box;
+      border-bottom: 1px solid #eee;
     }
-
+    
     .nav-left, .nav-right {
       display: flex;
       align-items: center;
       width: 33.33%;
     }
-
     .nav-right {
       justify-content: flex-end;
     }
-    
     .logo {
       display: flex;
       justify-content: center;
       width: 33.33%;
     }
 
-    .logo img {
-      height: 85px;
-      width: auto;
-    }
-
     nav a {
-      margin: 0 20px;
+      margin: 0 15px;
       text-decoration: none;
-      color: #e0e0e0;
+      color: #555; /* Dark grey for nav links on white header */
       font-family: sans-serif;
       font-size: 16px;
       letter-spacing: 1px;
@@ -56,10 +50,18 @@
     }
 
     nav a:hover, nav a.active {
-      color: #ffffff;
+      color: #000;
       text-decoration: underline;
     }
-    
+
+    .logo img {
+      height: 70px;
+      width: auto;
+      max-width: 100%;
+      transition: all 0.3s ease;
+      /* No filter needed for black logo on white background */
+    }
+
     /* --- Main Content Area --- */
     main {
       max-width: 900px;
@@ -70,16 +72,16 @@
     h1 {
         font-size: 38px;
         font-weight: normal;
-        color: #ffffff;
+        color: #000;
         margin-bottom: 40px;
-        border-bottom: 1px solid #333;
+        border-bottom: 1px solid #ddd;
         padding-bottom: 20px;
     }
 
     h2 {
         font-size: 24px;
         font-weight: normal;
-        color: #ffffff;
+        color: #000;
         margin-top: 40px;
     }
 
@@ -87,48 +89,59 @@
         margin-bottom: 20px;
     }
 
-    /* Style for links within the text */
     a {
-        color: #e0e0e0;
+        color: #333;
         text-decoration: none;
-        border-bottom: 1px dotted #777;
+        border-bottom: 1px dotted #555;
     }
-
     a:hover {
-        color: #ffffff;
-        border-bottom: 1px solid #ffffff;
+        border-bottom: 1px solid #000;
     }
 
     /* Remove underline from header/footer links */
     header a, .footer-nav a {
         border-bottom: none;
     }
-    
-    /* --- Footer --- */
+
+    /* --- Mobile Adjustments --- */
+    @media (max-width: 768px) {
+      header { padding: 15px 20px; }
+      .logo img { height: 50px; }
+      nav a { margin: 0 8px; font-size: 14px; }
+      main { padding: 0 20px; margin-top: 60px; }
+      h1 { font-size: 32px; }
+    }
+    @media (max-width: 480px) {
+      header { flex-direction: column; }
+      .logo { order: -1; margin-bottom: 15px; }
+      .nav-left, .nav-right { width: 100%; justify-content: center; }
+      .logo img { height: 45px; }
+      main { padding: 0 20px; margin-top: 40px; }
+      h1 { font-size: 28px; }
+    }
+
+    /* --- Footer Styles --- */
     footer {
       text-align: center;
       font-size: 14px;
       padding: 40px 20px;
-      background-color: #1a1a1a;
-      border-top: 1px solid #333;
-      margin-top: 100px;
+      background-color: #f8f8f8;
+      border-top: 1px solid #ddd;
       font-family: sans-serif;
     }
 
     .footer-nav a {
-      color: #b0b0b0;
+      color: #555;
       text-decoration: none;
       margin: 0 15px;
       transition: color 0.3s;
     }
-    
     .footer-nav a:hover {
-      color: #ffffff;
+      color: #000;
     }
-
     .copyright {
       margin-top: 20px;
-      color: #777;
+      color: #999;
     }
   </style>
 </head>
@@ -138,7 +151,7 @@
   <header>
     <nav class="nav-left">
       <a href="index.html">Bergvia</a> 
-      <a href="about.html">About</a> 
+      <a href="about.html">About</a>
       <a href="investments.html">Investments</a>
     </nav>
     <div class="logo">
@@ -183,7 +196,6 @@
     Xtraxfin SA<br>
     Email: <a href="mailto:privacy@bergvia.com">privacy@bergvia.com</a><br>
     Registered Office: Pfäffikon, SZ, Switzerland</p>
-
   </main>
 
   <footer>

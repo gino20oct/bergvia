@@ -8,14 +8,15 @@
     /* --- General Body & Font Styles --- */
     body {
       font-family: "Georgia", serif;
-      background-color: #ffffff; /* White background */
-      color: #333; /* Dark text */
+      background-color: #ffffff;
+      color: #333;
       margin: 0;
       line-height: 1.8;
-      font-size: 18px;
+      /* FLUID TYPOGRAPHY for body text */
+      font-size: clamp(16px, 1.2vw, 18px);
     }
 
-    /* --- Header & Navigation (Floating) --- */
+    /* --- Header & Navigation (As Provided) --- */
     header {
       position: absolute;
       top: 0;
@@ -27,13 +28,16 @@
       align-items: center;
       padding: 20px 40px;
       box-sizing: border-box;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
       background: transparent;
     }
-
-    .nav-left, .nav-right { display: flex; align-items: center; width: 33.33%; }
-    .nav-right { justify-content: flex-end; }
-    .logo { display: flex; justify-content: center; width: 33.33%; }
-
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
     nav a {
       margin: 0 15px;
       text-decoration: none;
@@ -44,11 +48,11 @@
       transition: color 0.3s;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
-
-    nav a:hover, nav a.active {
+    nav a:hover,
+    nav a.active {
+      color: #fff;
       text-decoration: underline;
     }
-
     .logo img {
       height: 70px;
       width: auto;
@@ -56,121 +60,96 @@
       transition: all 0.3s ease;
     }
 
-    /* --- Top Image Section with Title Inside --- */
+    /* --- Mobile Adjustments for header (As Provided) --- */
+    @media (max-width: 768px) {
+      header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
+      nav a { margin: 0 8px; font-size: 14px; }
+      .logo img { height: 50px; }
+    }
+    @media (max-width: 480px) {
+      header { flex-direction: column; align-items: center; }
+      .logo { order: -1; margin-bottom: 15px; }
+      nav { width: 100%; justify-content: center; }
+      .logo img { height: 45px; }
+    }
+
+    /* --- Hero Section --- */
     .page-hero {
-      height: 45vh;
-      min-height: 350px;
+      height: 70vh;
+      min-height: 500px;
       background-image: url('images/Other pages.jpg');
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
       display: flex;
-      align-items: flex-end;
+      align-items: flex-start;
+      justify-content: flex-start;
+      position: relative;
       box-sizing: border-box;
     }
-
-    /* --- Shared Container for Alignment --- */
-    .content-container {
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 60px;
-      padding-right: 60px;
-      width: 100%;
+    .hero-content {
+      max-width: 1300px;
+      padding: 400px 60px 0 260px;
       box-sizing: border-box;
-    }
-
-    .page-hero .content-container {
-      padding-bottom: 40px;
-    }
-
-    .page-hero h1 {
-      font-size: 42px;
-      font-weight: normal;
       color: #ffffff;
-      margin: 0;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-      border-bottom: 1px solid rgba(255,255,255,0.3);
-      padding-bottom: 20px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    }
+    .hero-content h1 {
+      font-weight: normal;
+      margin: 0 0 20px 0;
+      line-height: 1.3;
+      /* FLUID TYPOGRAPHY for hero title */
+      font-size: clamp(26px, 3vw, 42px);
     }
 
-    /* --- Main Content Area for Inner Pages --- */
-    .page-content-wrapper {
-      margin-top: 80px;
+    /* --- Page Content --- */
+    .page-content {
+      max-width: 900px;
+      margin: 100px auto;
+      padding: 0 60px;
+      text-align: justify;
     }
+    .page-content h2 {
+      font-weight: normal;
+      color: #000;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-top: 60px;
+      /* FLUID TYPOGRAPHY for subheadings */
+      font-size: clamp(22px, 2vw, 26px);
+    }
+    .page-content p { margin-bottom: 20px; }
+    .page-content ul { list-style-type: disc; padding-left: 20px; }
+    .page-content li { margin-bottom: 15px; }
     
-    .page-content-wrapper h2 {
-        font-size: 24px;
-        font-weight: normal;
-        color: #000;
-        margin-top: 40px;
+    /* --- SIMPLIFIED Mobile adjustments (no font sizes needed) --- */
+    @media (max-width: 1024px) {
+      .hero-content { padding: 150px 40px 0 80px; }
     }
-
-    .page-content-wrapper p, .page-content-wrapper ul {
-        margin-bottom: 20px;
-    }
-
-    .page-content-wrapper ul {
-        list-style-type: disc;
-        padding-left: 20px;
-    }
-
-    .page-content-wrapper li {
-        margin-bottom: 15px;
-    }
-
-    /* --- Mobile Adjustments --- */
     @media (max-width: 768px) {
-      header { padding: 15px 20px; }
-      .logo img { height: 50px; }
-      nav a { margin: 0 8px; font-size: 14px; }
-      .content-container { padding-left: 30px; padding-right: 30px; }
-      .page-hero h1 { font-size: 32px; }
-      .page-content-wrapper { margin-top: 60px; }
+      .page-hero { height: 60vh; }
+      .hero-content { padding: 150px 30px 0 30px; }
+      .page-content { padding: 0 30px; margin: 80px auto; }
     }
     @media (max-width: 480px) {
-      header { flex-direction: column; }
-      .logo { order: -1; margin-bottom: 15px; }
-      .nav-left, .nav-right { width: 100%; justify-content: center; }
-      .logo img { height: 45px; }
-      .content-container { padding-left: 20px; padding-right: 20px; }
-      .page-hero h1 { font-size: 28px; }
-      .page-content-wrapper { margin-top: 40px; }
+      .page-hero { height: 50vh; }
+      .hero-content { padding: 120px 20px 0 20px; }
+      .page-content { padding: 0 20px; margin: 60px auto; }
     }
 
     /* --- Footer --- */
-    footer {
-      text-align: center;
-      font-size: 14px;
-      padding: 40px 20px;
-      background-color: #f8f8f8;
-      border-top: 1px solid #ddd;
-      font-family: sans-serif;
-    }
-
-    .footer-nav a {
-      color: #555;
-      text-decoration: none;
-      margin: 0 15px;
-      transition: color 0.3s;
-    }
-
-    .footer-nav a:hover {
-      color: #000;
-    }
-
-    .copyright {
-      margin-top: 20px;
-      color: #999;
-    }
+    footer { text-align: center; font-size: 14px; padding: 40px 20px; background-color: #f8f8f8; border-top: 1px solid #ddd; font-family: sans-serif; }
+    .footer-nav a { color: #555; text-decoration: none; margin: 0 15px; transition: color 0.3s; }
+    .footer-nav a:hover { color: #000; }
+    .copyright { margin-top: 20px; color: #999; }
   </style>
 </head>
 
 <body>
 
   <header>
-    <nav class="nav-left">
-      <a href="index.html">Bergvia</a> 
+    <nav>
+      <a href="index.html">Home</a> 
       <a href="about.html" class="active">About</a> 
       <a href="investments.html">Investments</a>
     </nav>
@@ -179,37 +158,33 @@
         <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Family Office Logo">
       </a>
     </div>
-    <nav class="nav-right">
+    <nav>
       <a href="contacts.html">Contacts</a>
     </nav>
   </header>
 
   <main>
-    <!-- Top Image Section -->
     <section class="page-hero">
-      <div class="content-container">
-        <h1>A Family Perspective on Long-Term Value</h1>
+      <div class="hero-content">
+        <h1>A Legacy Forged in the Alps: Bergvia is the private investment office representing a family whose story has been written over three generations.</h1>
       </div>
     </section>
 
-    <!-- Page Content Section -->
-    <div class="page-content-wrapper">
-      <div class="content-container">
-          <p>
-            Founded and managed by our family, Bergvia reflects a cross-generational vision rooted in the Swiss and Italian Alps, a place where stability, resilience and foresight are part of the landscape.
-          </p>
-          <p>
-            We invest our own capital to preserve and grow the family’s assets while supporting innovation and responsible progress.
-          </p>
-          <h2>Our Philosophy</h2>
-          <p>Our philosophy is guided by three principles:</p>
-          <ul>
-            <li><strong>Long-term orientation</strong> — patient capital focused on sustainable value creation.</li>
-            <li><strong>Entrepreneurial mindset</strong> — active ownership and hands-on partnership with founders and managers.</li>
-            <li><strong>Responsible growth</strong> — contributing to the communities and environment in which we operate.</li>
-          </ul>
-      </div>
-    </div>
+    <section class="page-content">
+        <p>
+          Bergvia is the private investment office representing a family whose story has been written over three generations. Our roots are planted firmly in the Swiss and Italian Alps, a landscape that has not only shaped our family's rituals and stories but also instilled in us the values of resilience, foresight, and an enduring respect for what is built to last.
+        </p>
+        <p>
+          Our family's wealth was forged through the hard work and entrepreneurial spirit of family members who built and led businesses in the textile and printing industries. In recent years, this legacy has evolved to embrace technology and finance, always guided by the same principles of dedication and integrity. This journey, marked by both success and the premature loss of loved ones, has taught us the profound importance of preserving capital not just as a financial asset, but as a testament to the effort and sacrifice of those who came before us.
+        </p>
+        <h2>Our Guiding Principles</h2>
+        <p>Today, Bergvia invests our own capital with a dual purpose: to safeguard and grow this legacy for future generations, and to support the next wave of innovation and responsible progress. Our philosophy is a direct reflection of our history:</p>
+        <ul>
+          <li><strong>Long-term orientation:</strong> We provide patient capital, understanding that true, sustainable value is created over generations, not quarters.</li>
+          <li><strong>Entrepreneurial Partnership:</strong> We honor our heritage by engaging as active, hands-on partners, bringing our own experience as entrepreneurs and managers to support the founders we back.</li>
+          <li><strong>Responsible Stewardship:</strong> We are committed to contributing to the communities and environment in which we operate, ensuring that our growth is both meaningful and sustainable.</li>
+        </ul>
+    </section>
   </main>
 
   <footer>
@@ -221,8 +196,7 @@
       <a href="privacy.html">Privacy Policy</a>
     </div>
     <p class="copyright">
-      © 2025, Bergvia Family Office. All Rights Reserved.<br>Bergvia Family Office is a private investment company 
-managing the assets of a single family.
+      © 2025, Bergvia Family Office. All Rights Reserved.<br>Bergvia Family Office is a private investment company managing the assets of a single family.
     </p>
   </footer>
 

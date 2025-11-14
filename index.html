@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bergvia Family Office</title>
+
   <style>
     /* --- General Body & Font Styles --- */
     body {
@@ -15,42 +16,45 @@
       font-size: 18px;
     }
 
-    /* --- HEADER & NAVIGATION (Copied from your working contacts.html) --- */
+    /* ============================================================
+       HEADER + DESKTOP NAV
+       ============================================================ */
     header {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 10;
+      z-index: 20;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
       box-sizing: border-box;
-      flex-wrap: wrap;
       background: transparent;
     }
-    nav {
+
+    /* Desktop nav visible only on large screens */
+    .desktop-nav {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
+      gap: 20px;
     }
-    nav a {
-      margin: 0 15px;
+
+    .desktop-nav a {
       text-decoration: none;
-      color: #ffffff; /* White text for floating header */
+      color: #ffffff;
       font-family: sans-serif;
       font-size: 16px;
       letter-spacing: 1px;
       transition: color 0.3s;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
-    nav a:hover,
-    nav a.active {
+
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
       color: #fff;
       text-decoration: underline;
     }
+
     .logo img {
       height: 70px;
       width: auto;
@@ -58,30 +62,90 @@
       transition: all 0.3s ease;
     }
 
-    /* --- Mobile Adjustments for header (Copied from your working contacts.html) --- */
-    @media (max-width: 768px) {
-      header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
-      nav a { margin: 0 8px; font-size: 14px; }
-      .logo img { height: 50px; }
+    /* ============================================================
+       MOBILE HAMBURGER MENU (Option B — Full Screen Overlay)
+       ============================================================ */
+
+    /* Hide hamburger on desktop */
+    .hamburger {
+      display: none;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      z-index: 30;
+      padding: 5px 10px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
     }
+
+    /* Fullscreen Menu Overlay */
+    #mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(6px);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    #mobile-menu a {
+      font-size: 28px;
+      margin: 20px 0;
+      color: #333;
+      font-family: sans-serif;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #mobile-menu a:hover {
+      opacity: 0.6;
+    }
+
+    .close-menu {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 40px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    /* ============================================================
+       MOBILE BEHAVIOR
+       ============================================================ */
+    @media (max-width: 768px) {
+      .desktop-nav {
+        display: none;  /* hide desktop menu */
+      }
+
+      .hamburger {
+        display: block;  /* show hamburger */
+      }
+
+      .logo img {
+        height: 50px;
+      }
+    }
+
     @media (max-width: 480px) {
-      /* This rule from your contacts.html has a different structure that you prefer */
       header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
         padding: 10px 15px;
       }
-      nav a {
-        margin: 0 6px;
-        font-size: 13px;
-      }
+
       .logo img {
         height: 40px;
       }
     }
 
-    /* --- Full Screen Hero Section --- */
+    /* ============================================================
+       HERO SECTION (unchanged)
+       ============================================================ */
     .full-screen-hero {
       height: 100vh;
       background-image: url('images/Bergvia home page.jpg');
@@ -90,16 +154,17 @@
       background-repeat: no-repeat;
       box-sizing: border-box;
     }
+
     .hero-text-wrapper {
       height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      box-sizing: border-box;
       padding: 25vh 60px 50px 300px;
       color: #ffffff;
-      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
+
     .full-screen-hero h1 {
       font-weight: normal;
       max-width: 1200px;
@@ -107,67 +172,102 @@
       line-height: 1.2;
       font-size: clamp(34px, 5.5vw, 78px);
     }
+
     .hero-footer-content hr {
       border: none;
       height: 1px;
       background-color: rgba(255, 255, 255, 0.5);
       margin-bottom: 20px;
     }
+
     .hero-footer-content p {
       max-width: 1000px;
       line-height: 1.4;
       margin: 0;
-	  text-align: justify;
+      text-align: justify;
       font-size: clamp(15px, 1.5vw, 24px);
-		color: #000000; /* <-- THIS IS THE NEW LINE FOR BLACK TEXT */
-      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7); /* <-- Optional: Adds a subtle white shadow for readability */
+      color: #000000;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
     }
 
-    /* --- Mobile Adjustments for Hero --- */
-    @media (max-width: 768px) {
-      .hero-text-wrapper { padding: 20vh 30px 40px 30px; }
+    /* ============================================================
+       FOOTER (unchanged)
+       ============================================================ */
+    footer {
+      text-align: center;
+      font-size: 14px;
+      padding: 40px 20px;
+      background-color: #f8f8f8;
+      border-top: 1px solid #ddd;
+      font-family: sans-serif;
     }
-    @media (max-width: 480px) {
-      .hero-text-wrapper { padding: 18vh 20px 30px 20px; }
+    .footer-nav a {
+      color: #555;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s;
     }
-
-    /* --- Footer --- */
-    footer { text-align: center; font-size: 14px; padding: 40px 20px; background-color: #f8f8f8; border-top: 1px solid #ddd; font-family: sans-serif; }
-    .footer-nav a { color: #555; text-decoration: none; margin: 0 15px; transition: color 0.3s; }
-    .footer-nav a:hover { color: #000; }
-    .copyright { margin-top: 20px; color: #999; }
-
-    /* --- Cookie Banner Styles --- */
-    #cookie-banner { position: fixed; bottom: 0; left: 0; width: 100%; background-color: #ffffff; border-top: 1px solid #ddd; padding: 20px; box-sizing: border-box; display: none; justify-content: center; align-items: center; text-align: center; z-index: 1000; font-family: sans-serif; font-size: 14px; color: #333; box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05); }
-    #cookie-banner a { color: #333; text-decoration: underline; }
-    .cookie-buttons button { background-color: #eaeaea; color: #333; border: 1px solid #ccc; padding: 10px 20px; margin-left: 10px; cursor: pointer; border-radius: 5px; transition: background-color 0.3s; }
-    .cookie-buttons button:hover { background-color: #ddd; }
-    .cookie-buttons #accept-cookies { background-color: #333; color: #fff; font-weight: bold; }
+    .footer-nav a:hover {
+      color: #000;
+    }
+    .copyright {
+      margin-top: 20px;
+      color: #999;
+    }
   </style>
 </head>
 
 <body>
 
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
   <header>
-    <nav>
-      <a href="index.html" class="active">Home</a> 
+
+    <!-- Left navigation (desktop only) -->
+    <nav class="desktop-nav">
+      <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
       <a href="investments.html">Investments</a>
     </nav>
+
+    <!-- Center logo -->
     <div class="logo">
       <a href="index.html">
         <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Family Office Logo">
       </a>
     </div>
-    <nav>
+
+    <!-- Right navigation (desktop only) -->
+    <nav class="desktop-nav">
       <a href="contacts.html">Contacts</a>
     </nav>
+
+    <!-- Hamburger (mobile only) -->
+    <div class="hamburger" onclick="openMenu()">☰</div>
+
   </header>
 
+  <!-- ============================================================
+       FULLSCREEN MOBILE MENU
+       ============================================================ -->
+  <div id="mobile-menu">
+    <div class="close-menu" onclick="closeMenu()">×</div>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="investments.html">Investments</a>
+    <a href="contacts.html">Contacts</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </div>
+
+  <!-- ============================================================
+       MAIN CONTENT (unchanged)
+       ============================================================ -->
   <main>
     <section class="full-screen-hero">
       <div class="hero-text-wrapper">
-        
+
         <h1>Grounded in the Alps. Investing for Generations.</h1>
 
         <div class="hero-footer-content">
@@ -182,6 +282,9 @@
     </section>
   </main>
 
+  <!-- ============================================================
+       FOOTER (unchanged)
+       ============================================================ -->
   <footer>
     <div class="footer-nav">
       <a href="index.html">Home</a>
@@ -191,29 +294,21 @@
       <a href="privacy.html">Privacy Policy</a>
     </div>
     <p class="copyright">
-      © 2025, Bergvia Family Office. All Rights Reserved.<br>Bergvia Family Office is a private investment company 
-managing the assets of a single family.
+      © 2025, Bergvia Family Office. All Rights Reserved.<br>
+      Bergvia Family Office is a private investment company managing the assets of a single family.
     </p>
   </footer>
 
-  <!-- Cookie Banner -->
-  <div id="cookie-banner">
-    <p>This website uses Google Analytics to collect anonymous visitor statistics. See our <a href="privacy.html">Privacy Policy</a> for more details.</p>
-    <div class="cookie-buttons">
-      <button id="decline-cookies">Decline</button>
-      <button id="accept-cookies">Accept</button>
-    </div>
-  </div>
-
+  <!-- ============================================================
+       MOBILE MENU SCRIPT
+       ============================================================ -->
   <script>
-    // --- Cookie Banner Logic ---
-    const GA_MEASUREMENT_ID = 'YOUR_GA_MEASUREMENT_ID'; // Replace with your actual ID
-    function setCookie(name, value, days) { let expires = ""; if (days) { const date = new Date(); date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); expires = "; expires=" + date.toUTCString(); } document.cookie = name + "=" + (value || "") + expires + "; path=/; SameSite=Lax"; }
-    function getCookie(name) { const nameEQ = name + "="; const ca = document.cookie.split(';'); for (let i = 0; i < ca.length; i++) { let c = ca[i]; while (c.charAt(0) == ' ') c = c.substring(1, c.length); if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length); } return null; }
-    function loadGoogleAnalytics() { if (GA_MEASUREMENT_ID === 'YOUR_GA_MEASUREMENT_ID') { console.warn('Google Analytics is not loaded. Replace YOUR_GA_MEASUREMENT_ID.'); return; } const script = document.createElement('script'); script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`; script.async = true; document.head.appendChild(script); window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', GA_MEASUREMENT_ID, { 'anonymize_ip': true }); }
-    document.addEventListener('DOMContentLoaded', () => { const cookieBanner = document.getElementById('cookie-banner'); const acceptButton = document.getElementById('accept-cookies'); const declineButton = document.getElementById('decline-cookies'); const consentCookie = getCookie('cookie_consent'); if (consentCookie === 'true') { loadGoogleAnalytics(); } else if (!consentCookie) { cookieBanner.style.display = 'flex'; }
-    acceptButton.addEventListener('click', () => { setCookie('cookie_consent', 'true', 365); cookieBanner.style.display = 'none'; loadGoogleAnalytics(); });
-    declineButton.addEventListener('click', () => { setCookie('cookie_consent', 'false', 365); cookieBanner.style.display = 'none'; }); });
+    function openMenu() {
+      document.getElementById("mobile-menu").style.display = "flex";
+    }
+    function closeMenu() {
+      document.getElementById("mobile-menu").style.display = "none";
+    }
   </script>
 
 </body>

@@ -49,6 +49,7 @@
       height: 70px;
       width: auto;
       transition: 0.3s;
+      filter: brightness(0) invert(1); /* CORRECTED: Makes logo white */
     }
 
     /* --- CORRECTED MOBILE MENU BUTTON & PANEL --- */
@@ -58,7 +59,7 @@
       cursor: pointer;
       color: #ffffff;
       text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-      z-index: 2000;
+      z-index: 2000; /* CORRECTED: Lower than the menu panel */
     }
     .mobile-nav {
       display: none;
@@ -83,19 +84,17 @@
       color: #000;
       font-family: sans-serif;
     }
-
     .mobile-menu-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
-  color: #000;
-  cursor: pointer;
-  font-family: sans-serif;
-  font-weight: 300;
-}
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: #000;
+      cursor: pointer;
+      font-family: sans-serif;
+      font-weight: 300;
+    }
     
-
     /* --- CORRECTED Mobile Breakpoints --- */
     @media (max-width: 768px) {
       .desktop-nav { display: none; }
@@ -107,7 +106,8 @@
       .logo img { height: 42px; }
     }
 
-    /* --- Hero Section --- */
+
+    /* --- Hero Section (Untouched) --- */
     .page-hero {
       height: 70vh;
       min-height: 500px;
@@ -135,7 +135,7 @@
       font-size: clamp(26px, 3vw, 40px);
     }
 
-    /* --- Page Content --- */
+    /* --- Page Content (Untouched) --- */
     .page-content {
       max-width: 900px;
       margin: 100px auto;
@@ -154,12 +154,12 @@
     .page-content ul { list-style-type: disc; padding-left: 20px; }
     .page-content li { margin-bottom: 15px; }
 
-    /* --- Mobile adjustments for content --- */
+    /* --- Mobile adjustments for content (Untouched) --- */
     @media (max-width: 1024px) { .hero-content { padding: 150px 40px 0 80px; } }
     @media (max-width: 768px) { .page-hero { height: 60vh; } .hero-content { padding: 150px 30px 0 30px; } .page-content { padding: 0 30px; margin: 80px auto; } }
     @media (max-width: 480px) { .page-hero { height: 50vh; } .hero-content { padding: 120px 20px 0 20px; } .page-content { padding: 0 20px; margin: 60px auto; } }
 
-    /* --- Footer --- */
+    /* --- Footer (Untouched) --- */
     footer { text-align: center; font-size: 14px; padding: 40px 20px; background-color: #f8f8f8; border-top: 1px solid #ddd; font-family: sans-serif; }
     .footer-nav a { color: #555; text-decoration: none; margin: 0 15px; }
     .footer-nav a:hover { color: #000; }
@@ -184,11 +184,12 @@
   </header>
 
   <div class="mobile-nav" id="mobileNav">
-    <div class="mobile-menu-close" onclick="toggleMobileMenu()">×</div
+    <div class="mobile-menu-close" onclick="toggleMobileMenu()">×</div>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="investments.html">Investments</a>
     <a href="contacts.html">Contacts</a>
+    <a href="privacy.html">Privacy</a>
   </div>
 
   <main>
@@ -199,7 +200,6 @@
         </h1>
       </div>
     </section>
-
     <section class="page-content">
       <h2>Our Approach: A Blend of Strategies</h2>
       <p>
@@ -214,7 +214,7 @@
       </p>
     </section>
   </main>
-
+  
   <footer>
     <div class="footer-nav">
       <a href="index.html">Home</a>

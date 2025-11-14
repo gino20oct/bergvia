@@ -14,73 +14,87 @@
       line-height: 1.8;
       font-size: clamp(16px, 1.2vw, 18px);
     }
+    a { text-decoration: none; }
 
-    /* --- HEADER & NAVIGATION (Copied from contacts.html) --- */
+    /* --- CORRECTED HEADER & NAVIGATION --- */
     header {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 10;
+      z-index: 2000;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      box-sizing: border-box;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      flex-wrap: wrap;
       background: transparent;
+      box-sizing: border-box;
     }
-    nav {
+    .desktop-nav {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
+      gap: 20px;
     }
-    nav a {
-      margin: 0 15px;
-      text-decoration: none;
-      color: #ffffff; /* White text for floating header */
+    .desktop-nav a {
+      color: #ffffff;
       font-family: sans-serif;
       font-size: 16px;
       letter-spacing: 1px;
-      transition: color 0.3s;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
-    nav a:hover,
-    nav a.active {
-      color: #fff;
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
       text-decoration: underline;
     }
     .logo img {
       height: 70px;
       width: auto;
-      max-width: 100%;
-      transition: all 0.3s ease;
+      transition: 0.3s;
+      filter: brightness(0) invert(1);
     }
 
-    /* --- Mobile Adjustments for header --- */
+    /* --- CORRECTED MOBILE MENU BUTTON & PANEL --- */
+    .mobile-menu-button {
+      display: none;
+      font-size: 32px;
+      cursor: pointer;
+      color: #ffffff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+      z-index: 3000;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100%;
+      background: rgba(255,255,255,0.98);
+      padding: 80px 30px;
+      box-sizing: border-box;
+      transition: right 0.35s ease;
+      z-index: 2500;
+    }
+    .mobile-nav.open {
+      right: 0;
+    }
+    .mobile-nav a {
+      display: block;
+      margin-bottom: 25px;
+      font-size: 22px;
+      color: #000;
+      font-family: sans-serif;
+    }
+
+    /* --- CORRECTED Mobile Breakpoints --- */
     @media (max-width: 768px) {
-      header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
-      nav a { margin: 0 8px; font-size: 14px; }
+      .desktop-nav { display: none; }
+      .mobile-menu-button { display: block; }
       .logo img { height: 50px; }
+      .mobile-nav { display: block; }
     }
     @media (max-width: 480px) {
-      header {
-        flex-direction: row; /* Kept row as per contacts.html */
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 15px;
-      }
-      nav a {
-        margin: 0 6px;
-        font-size: 13px;
-      }
-      .logo img {
-        height: 40px;
-      }
+      .logo img { height: 42px; }
     }
-
 
     /* --- Hero Section --- */
     .page-hero {
@@ -129,46 +143,41 @@
     .page-content ul { list-style-type: disc; padding-left: 20px; }
     .page-content li { margin-bottom: 15px; }
 
-    /* --- Mobile Adjustments --- */
-    @media (max-width: 1024px) {
-      .hero-content { padding: 150px 40px 0 80px; }
-    }
-    @media (max-width: 768px) {
-      .page-hero { height: 60vh; }
-      .hero-content { padding: 150px 30px 0 30px; }
-      .page-content { padding: 0 30px; margin: 80px auto; }
-    }
-    @media (max-width: 480px) {
-      .page-hero { height: 50vh; }
-      .hero-content { padding: 120px 20px 0 20px; }
-      .page-content { padding: 0 20px; margin: 60px auto; }
-    }
+    /* --- Mobile adjustments for content --- */
+    @media (max-width: 1024px) { .hero-content { padding: 150px 40px 0 80px; } }
+    @media (max-width: 768px) { .page-hero { height: 60vh; } .hero-content { padding: 150px 30px 0 30px; } .page-content { padding: 0 30px; margin: 80px auto; } }
+    @media (max-width: 480px) { .page-hero { height: 50vh; } .hero-content { padding: 120px 20px 0 20px; } .page-content { padding: 0 20px; margin: 60px auto; } }
 
     /* --- Footer --- */
     footer { text-align: center; font-size: 14px; padding: 40px 20px; background-color: #f8f8f8; border-top: 1px solid #ddd; font-family: sans-serif; }
-    .footer-nav a { color: #555; text-decoration: none; margin: 0 15px; transition: color 0.3s; }
+    .footer-nav a { color: #555; text-decoration: none; margin: 0 15px; }
     .footer-nav a:hover { color: #000; }
     .copyright { margin-top: 20px; color: #999; }
   </style>
 </head>
-
 <body>
 
   <header>
-    <nav>
-      <a href="index.html">Home</a> 
-      <a href="about.html">About</a> 
-      <a href="investments.html" class="active">Investments</a>
-    </nav>
     <div class="logo">
       <a href="index.html">
-        <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Family Office Logo">
+        <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Logo">
       </a>
     </div>
-    <nav>
+    <nav class="desktop-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="investments.html" class="active">Investments</a>
       <a href="contacts.html">Contacts</a>
     </nav>
+    <div class="mobile-menu-button" onclick="toggleMobileMenu()">☰</div>
   </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="investments.html">Investments</a>
+    <a href="contacts.html">Contacts</a>
+  </div>
 
   <main>
     <section class="page-hero">
@@ -184,15 +193,10 @@
       <p>
         Bergvia has a diversified and flexible approach to navigating the complexities of the global markets. We mix investments in Real Estate, in Public and Private markets with Direct Ownerships of operating businesses.
       </p>
-
       <p><strong>Public Markets:</strong> We invest in global listed equities and fixed income with patient capital focused on sustainable value creation. Our equity strategy is to be long-term owners of high-quality, well-managed businesses with durable competitive advantages and strong fundamentals. We prioritize deep research and a thorough understanding of the companies we invest in, rather than reacting to short-term market volatility. In fixed income, our approach is centered on capital preservation and the generation of stable, predictable income streams, carefully managing credit and duration risk.</p>
-
       <p><strong>Real Estate:</strong> We invest in Real Estate for its tangible nature, stable income generation and long-term capital appreciation. Our strategy focuses mainly in residential and commercial properties, avoiding overheated locations, mainly in Switzerland. Bergvia invests both directly and through trusted partnerships with specialized local developers and managers to access and execute best-in-class real estate opportunities.</p>
-
       <p><strong>Private Markets:</strong> We partner with a select and small group of asset managers in Switzerland and Europe. These relationships provide us with deep sector knowledge and access to a broad universe of opportunities in Private Equity and Venture Capital, Infrastructure and Real Assets, Technology and Digital Innovation.</p>
-
       <p><strong>Direct Ownership:</strong> Reflecting our entrepreneurial heritage, Bergvia also directly acquires, develops, and nurtures operating businesses. In these ventures, we take an active, hands-on role, providing strategic guidance and patient capital to help strong management teams achieve their full potential. Our focus for direct investments is on growth sectors aligned with future trends, including: Circular Economy, Beauty & Cosmetics, Health Tech and Technology.</p>
-
       <p>
         Our investment activity is defined by the powerful combination of strategic patience and entrepreneurial agility. As a family, we are not bound by short-term performance metrics, allowing us to invest with a true multi-generational horizon. We have the discipline to support our partners and companies through economic cycles. At the same time, our private and agile structure enables us to make swift, decisive commitments when we identify unique opportunities that align with our long-term vision. This is how we build resilient legacies—steadily, and one decision at a time.
       </p>
@@ -211,6 +215,12 @@
       © 2025, Bergvia Family Office. All Rights Reserved.<br>Bergvia Family Office is a private investment company managing the assets of a single family.
     </p>
   </footer>
+
+  <script>
+    function toggleMobileMenu() {
+      document.getElementById("mobileNav").classList.toggle("open");
+    }
+  </script>
 
 </body>
 </html>

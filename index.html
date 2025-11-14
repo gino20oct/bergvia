@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bergvia Family Office</title>
-
   <style>
     /* --- General Body & Font Styles --- */
     body {
@@ -14,11 +13,10 @@
       margin: 0;
       line-height: 1.8;
       font-size: 18px;
+      overflow-x: hidden;
     }
 
-    /* ============================================================
-       HEADER + DESKTOP NAV
-       ============================================================ */
+    /* --- HEADER with Hamburger Menu --- */
     header {
       position: absolute;
       top: 0;
@@ -26,244 +24,233 @@
       width: 100%;
       z-index: 20;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       padding: 20px 40px;
       box-sizing: border-box;
       background: transparent;
     }
 
-    /* Desktop nav visible only on large screens */
-    .desktop-nav {
-      display: flex;
-      gap: 20px;
+    .logo img {
+      height: 70px;
+      width: auto;
+      transition: all 0.3s ease;
     }
 
-    .desktop-nav a {
+    nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    nav a {
       text-decoration: none;
       color: #ffffff;
       font-family: sans-serif;
       font-size: 16px;
       letter-spacing: 1px;
-      transition: color 0.3s;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      transition: opacity .2s;
     }
 
-    .desktop-nav a:hover,
-    .desktop-nav a.active {
-      color: #fff;
-      text-decoration: underline;
+    nav a:hover {
+      opacity: 0.7;
     }
 
-    .logo img {
-      height: 70px;
-      width: auto;
-      max-width: 100%;
-      transition: all 0.3s ease;
-    }
-
-    /* ============================================================
-       MOBILE HAMBURGER MENU (Option B — Full Screen Overlay)
-       ============================================================ */
-
-    /* Hide hamburger on desktop */
+    /* --- HAMBURGER (MOBILE ONLY) --- */
     .hamburger {
       display: none;
-      font-size: 30px;
-      color: white;
+      flex-direction: column;
       cursor: pointer;
-      z-index: 30;
-      padding: 5px 10px;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      gap: 5px;
     }
 
-    /* Fullscreen Menu Overlay */
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* MOBILE NAV MENU */
     #mobile-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(6px);
       display: none;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 100;
+      position: absolute;
+      top: 80px;
+      right: 20px;
+      background: rgba(0,0,0,0.85);
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 999;
     }
 
     #mobile-menu a {
-      font-size: 28px;
-      margin: 20px 0;
-      color: #333;
-      font-family: sans-serif;
-      letter-spacing: 1px;
+      color: white;
       text-decoration: none;
-      transition: opacity 0.3s ease;
+      font-size: 16px;
+      padding: 10px 0;
+      text-align: right;
+      font-family: sans-serif;
     }
 
-    #mobile-menu a:hover {
-      opacity: 0.6;
-    }
-
-    .close-menu {
-      position: absolute;
-      top: 20px;
-      right: 25px;
-      font-size: 40px;
-      color: #333;
-      cursor: pointer;
-    }
-
-    /* ============================================================
-       MOBILE BEHAVIOR
-       ============================================================ */
-    @media (max-width: 768px) {
-      .desktop-nav {
-        display: none;  /* hide desktop menu */
-      }
-
-      .hamburger {
-        display: block;  /* show hamburger */
-      }
-
-      .logo img {
-        height: 50px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 10px 15px;
-      }
-
-      .logo img {
-        height: 40px;
-      }
-    }
-
-    /* ============================================================
-       HERO SECTION (unchanged)
-       ============================================================ */
+    /* --- FULL SCREEN HERO --- */
     .full-screen-hero {
       height: 100vh;
       background-image: url('images/Bergvia home page.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      align-items: stretch;
     }
 
     .hero-text-wrapper {
+      width: 100%;
       height: 100%;
+      padding: 25vh 60px 18vh 300px; /* Desktop spacing */
+      box-sizing: border-box;
+
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 25vh 60px 50px 300px;
-      color: #ffffff;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
 
     .full-screen-hero h1 {
-      font-weight: normal;
-      max-width: 1200px;
-      margin: 0;
-      line-height: 1.2;
       font-size: clamp(34px, 5.5vw, 78px);
+      color: white;
+      margin: 0;
+      max-width: 1100px;
+      line-height: 1.2;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
 
     .hero-footer-content hr {
       border: none;
       height: 1px;
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(255, 255, 255, 0.55);
       margin-bottom: 20px;
+      width: 100%;
+      max-width: 900px;
     }
 
     .hero-footer-content p {
-      max-width: 1000px;
-      line-height: 1.4;
-      margin: 0;
+      max-width: 900px;
+      color: #000; /* readable on light areas */
       text-align: justify;
-      font-size: clamp(15px, 1.5vw, 24px);
-      color: #000000;
-      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+      font-size: clamp(15px, 1.5vw, 22px);
+      line-height: 1.4;
+      text-shadow: 0 1px 2px rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.4);
+      padding: 8px 12px;
+      border-radius: 4px;
     }
 
-    /* ============================================================
-       FOOTER (unchanged)
-       ============================================================ */
+    /* Ensure hero text stays inside image on all laptops */
+    @media (min-width: 1200px) and (max-height: 850px) {
+      .hero-text-wrapper {
+        padding-bottom: 12vh;
+        padding-top: 20vh;
+      }
+    }
+
+    /* --- TABLET --- */
+    @media (max-width: 1024px) {
+      .hero-text-wrapper {
+        padding: 20vh 40px 14vh 120px;
+      }
+      .logo img { height: 60px; }
+    }
+
+    /* --- MOBILE --- */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .hamburger { display: flex; }
+
+      .logo img { height: 50px; }
+
+      .hero-text-wrapper {
+        padding: 20vh 30px 12vh 30px;
+      }
+    }
+
+    /* --- SMALL MOBILE --- */
+    @media (max-width: 480px) {
+      .logo img { height: 40px; }
+
+      .hero-text-wrapper {
+        padding: 18vh 20px 10vh 20px;
+      }
+    }
+
+    /* --- Footer --- */
     footer {
       text-align: center;
-      font-size: 14px;
       padding: 40px 20px;
       background-color: #f8f8f8;
-      border-top: 1px solid #ddd;
       font-family: sans-serif;
+      border-top: 1px solid #ddd;
+      font-size: 14px;
     }
     .footer-nav a {
-      color: #555;
       text-decoration: none;
       margin: 0 15px;
-      transition: color 0.3s;
+      color: #555;
     }
-    .footer-nav a:hover {
-      color: #000;
-    }
-    .copyright {
-      margin-top: 20px;
-      color: #999;
+    .footer-nav a:hover { color: #000; }
+    .copyright { margin-top: 20px; color: #999; }
+
+    /* COOKIE BANNER */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #ddd;
+      padding: 20px;
+      text-align: center;
+      display: none;
+      z-index: 2000;
+      font-family: sans-serif;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- ============================================================
-       HEADER
-       ============================================================ -->
   <header>
-
-    <!-- Left navigation (desktop only) -->
-    <nav class="desktop-nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="investments.html">Investments</a>
-    </nav>
-
-    <!-- Center logo -->
     <div class="logo">
       <a href="index.html">
-        <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Family Office Logo">
+        <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Logo">
       </a>
     </div>
 
-    <!-- Right navigation (desktop only) -->
-    <nav class="desktop-nav">
+    <!-- Desktop Navigation -->
+    <nav>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="investments.html">Investments</a>
       <a href="contacts.html">Contacts</a>
     </nav>
 
-    <!-- Hamburger (mobile only) -->
-    <div class="hamburger" onclick="openMenu()">☰</div>
+    <!-- Hamburger Button -->
+    <div class="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
 
+    <!-- Mobile Menu -->
+    <div id="mobile-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="investments.html">Investments</a>
+      <a href="contacts.html">Contacts</a>
+    </div>
   </header>
 
-  <!-- ============================================================
-       FULLSCREEN MOBILE MENU
-       ============================================================ -->
-  <div id="mobile-menu">
-    <div class="close-menu" onclick="closeMenu()">×</div>
-
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="investments.html">Investments</a>
-    <a href="contacts.html">Contacts</a>
-    <a href="privacy.html">Privacy Policy</a>
-  </div>
-
-  <!-- ============================================================
-       MAIN CONTENT (unchanged)
-       ============================================================ -->
   <main>
     <section class="full-screen-hero">
       <div class="hero-text-wrapper">
@@ -273,8 +260,7 @@
         <div class="hero-footer-content">
           <hr>
           <p>
-            Bergvia Family Office is a privately held investment company managing the assets and long-term interests of our family. Our approach combines disciplined, long-term capital allocation across public and private markets with an entrepreneurial mindset, directly acquiring and building operating businesses with strong growth potential.
-            <br>Through this blended strategy, we aim to create lasting value for our future generations, the communities where we live, and the natural environment that sustains us.
+            Bergvia Family Office is a privately held investment company managing the assets and long-term interests of our family. Our approach combines disciplined, long-term capital allocation across public and private markets with an entrepreneurial mindset, directly acquiring and building operating businesses with strong growth potential. Through this blended strategy, we aim to create lasting value for future generations, the communities where we live, and the natural environment that sustains us.
           </p>
         </div>
 
@@ -282,9 +268,6 @@
     </section>
   </main>
 
-  <!-- ============================================================
-       FOOTER (unchanged)
-       ============================================================ -->
   <footer>
     <div class="footer-nav">
       <a href="index.html">Home</a>
@@ -294,20 +277,15 @@
       <a href="privacy.html">Privacy Policy</a>
     </div>
     <p class="copyright">
-      © 2025, Bergvia Family Office. All Rights Reserved.<br>
-      Bergvia Family Office is a private investment company managing the assets of a single family.
+      © 2025 Bergvia Family Office. All Rights Reserved.
     </p>
   </footer>
 
-  <!-- ============================================================
-       MOBILE MENU SCRIPT
-       ============================================================ -->
+  <!-- Script: Hamburger menu -->
   <script>
-    function openMenu() {
-      document.getElementById("mobile-menu").style.display = "flex";
-    }
-    function closeMenu() {
-      document.getElementById("mobile-menu").style.display = "none";
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobile-menu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
     }
   </script>
 

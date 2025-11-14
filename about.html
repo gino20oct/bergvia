@@ -14,68 +14,53 @@
       line-height: 1.8;
       font-size: clamp(16px, 1.2vw, 18px);
     }
+    a { text-decoration: none; }
 
-    /* -----------------------------------------
-       HEADER + NAV (Desktop)
-    ------------------------------------------*/
+    /* --- CORRECTED HEADER & NAVIGATION --- */
     header {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 10;
+      z-index: 2000;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      box-sizing: border-box;
       background: transparent;
+      box-sizing: border-box;
     }
-
-    /* Logo left */
-    .logo img {
-      height: 70px;
-      width: auto;
-      max-width: 100%;
-      transition: all 0.3s ease;
-    }
-
-    /* Desktop nav right */
     .desktop-nav {
       display: flex;
-      align-items: center;
       gap: 20px;
     }
-
     .desktop-nav a {
-      text-decoration: none;
       color: #ffffff;
       font-family: sans-serif;
       font-size: 16px;
       letter-spacing: 1px;
-      transition: color 0.3s;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
-
     .desktop-nav a:hover,
     .desktop-nav a.active {
-      color: #fff;
       text-decoration: underline;
     }
+    .logo img {
+      height: 70px;
+      width: auto;
+      transition: 0.3s;
+    }
 
-  /* -----------------------------------------
-       MOBILE MENU BUTTON
-    ------------------------------------------*/
+    /* --- CORRECTED MOBILE MENU BUTTON & PANEL --- */
     .mobile-menu-button {
       display: none;
       font-size: 32px;
       cursor: pointer;
-      color: #fff;
+      color: #ffffff;
       text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+      z-index: 3000;
     }
-
-    /* Mobile menu panel */
-   mobile-nav {
+    .mobile-nav {
       display: none;
       position: fixed;
       top: 0;
@@ -86,13 +71,11 @@
       padding: 80px 30px;
       box-sizing: border-box;
       transition: right 0.35s ease;
-      z-index: 2500; /* <-- FIX */
+      z-index: 2500;
     }
-
     .mobile-nav.open {
       right: 0;
     }
-
     .mobile-nav a {
       display: block;
       margin-bottom: 25px;
@@ -101,20 +84,18 @@
       font-family: sans-serif;
     }
 
-    /* --- Mobile Breakpoints --- */
+    /* --- CORRECTED Mobile Breakpoints --- */
     @media (max-width: 768px) {
       .desktop-nav { display: none; }
       .mobile-menu-button { display: block; }
       .logo img { height: 50px; }
+      .mobile-nav { display: block; } /* Make the panel exist on mobile */
     }
-
     @media (max-width: 480px) {
-      .logo img { height: 45px; }
+      .logo img { height: 42px; }
     }
 
-      /* -----------------------------------------
-       HERO SECTION
-    ------------------------------------------*/
+    /* --- HERO SECTION --- */
     .page-hero {
       height: 70vh;
       min-height: 500px;
@@ -128,7 +109,6 @@
       position: relative;
       box-sizing: border-box;
     }
-
     .hero-content {
       max-width: 1300px;
       padding: 400px 60px 0 260px;
@@ -136,7 +116,6 @@
       color: #ffffff;
       text-shadow: 0 2px 5px rgba(0,0,0,0.4);
     }
-
     .hero-content h1 {
       font-weight: normal;
       margin: 0 0 20px 0;
@@ -151,7 +130,6 @@
       padding: 0 60px;
       text-align: justify;
     }
-
     .page-content h2 {
       font-weight: normal;
       color: #000;
@@ -160,25 +138,14 @@
       margin-top: 60px;
       font-size: clamp(22px, 2vw, 26px);
     }
-
     .page-content p { margin-bottom: 20px; }
     .page-content ul { list-style-type: disc; padding-left: 20px; }
     .page-content li { margin-bottom: 15px; }
 
-    /* --- SIMPLIFIED Mobile adjustments --- */
-    @media (max-width: 1024px) {
-      .hero-content { padding: 150px 40px 0 80px; }
-    }
-    @media (max-width: 768px) {
-      .page-hero { height: 60vh; }
-      .hero-content { padding: 150px 30px 0 30px; }
-      .page-content { padding: 0 30px; margin: 80px auto; }
-    }
-    @media (max-width: 480px) {
-      .page-hero { height: 50vh; }
-      .hero-content { padding: 120px 20px 0 20px; }
-      .page-content { padding: 0 20px; margin: 60px auto; }
-    }
+    /* --- Mobile adjustments for content --- */
+    @media (max-width: 1024px) { .hero-content { padding: 150px 40px 0 80px; } }
+    @media (max-width: 768px) { .page-hero { height: 60vh; } .hero-content { padding: 150px 30px 0 30px; } .page-content { padding: 0 30px; margin: 80px auto; } }
+    @media (max-width: 480px) { .page-hero { height: 50vh; } .hero-content { padding: 120px 20px 0 20px; } .page-content { padding: 0 20px; margin: 60px auto; } }
 
     /* --- Footer --- */
     footer {
@@ -189,47 +156,37 @@
       border-top: 1px solid #ddd;
       font-family: sans-serif;
     }
-    .footer-nav a { color: #555; text-decoration: none; margin: 0 15px; transition: color 0.3s; }
+    .footer-nav a { color: #555; text-decoration: none; margin: 0 15px; }
     .footer-nav a:hover { color: #000; }
-    .copyright { margin-top: 20px; color: #999; }
+    .copyright { margin-top: 20px; color: #777; }
   </style>
 </head>
-
 <body>
 
-  <!-- HEADER (updated) -->
   <header>
-
-    <!-- Logo left -->
     <div class="logo">
       <a href="index.html">
         <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Family Office Logo">
       </a>
     </div>
-
-    <!-- Desktop Menu right -->
     <nav class="desktop-nav">
       <a href="index.html">Home</a>
       <a href="about.html" class="active">About</a>
       <a href="investments.html">Investments</a>
       <a href="contacts.html">Contacts</a>
     </nav>
-
-    <!-- Hamburger -->
     <div class="mobile-menu-button" onclick="toggleMobileMenu()">☰</div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <a href="index.html">Home</a>
-      <a href="about.html" class="active">About</a>
-      <a href="investments.html">Investments</a>
-      <a href="contacts.html">Contacts</a>
-    </div>
-
   </header>
 
-  <main>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="investments.html">Investments</a>
+    <a href="contacts.html">Contacts</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
 
+  <main>
     <section class="page-hero">
       <div class="hero-content">
         <h1>
@@ -237,24 +194,18 @@
         </h1>
       </div>
     </section>
-
     <section class="page-content">
       <p>  
         Bergvia is the private investment office representing a family whose story has been written over three generations. Our roots are planted firmly in the Swiss and Italian Alps, a landscape that has not only shaped our family's rituals and stories but also instilled in us the values of resilience, foresight, and an enduring respect for what is built to last.
         <br>Our family's wealth was forged through the hard work and entrepreneurial spirit of family members who built and led businesses in the textile and printing industries. In recent years, this legacy has evolved to embrace technology and finance, always guided by the same principles of dedication and integrity. This journey, marked by both success and the premature loss of loved ones, has taught us the profound importance of preserving capital not just as a financial asset, but as a testament to the effort and sacrifice of those who came before us.
       </p>
-
-      <!-- (Content unchanged) -->
-
       <h2>Our Guiding Principles</h2>
-
       <ul>
         <li><strong>Long-term orientation:</strong> We provide patient capital, understanding that true, sustainable value is created over generations, not quarters.</li>
         <li><strong>Entrepreneurial Partnership:</strong> We honor our heritage by engaging as active, hands-on partners, bringing our own experience as entrepreneurs and managers to support the founders we back.</li>
         <li><strong>Responsible Stewardship:</strong> We are committed to contributing to the communities and environment in which we operate, ensuring that our growth is both meaningful and sustainable.</li>
       </ul>
     </section>
-
   </main>
 
   <footer>

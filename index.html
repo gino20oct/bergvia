@@ -4,98 +4,101 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bergvia Family Office</title>
+
   <style>
-    /* --- General Body & Font Styles --- */
+    /* ------------------------------
+       GLOBAL STYLE
+    --------------------------------*/
     body {
       font-family: "Georgia", serif;
+      margin: 0;
       background-color: #ffffff;
       color: #333;
-      margin: 0;
       line-height: 1.8;
-      font-size: 18px;
-      overflow-x: hidden;
     }
 
-    /* --- HEADER with Hamburger Menu --- */
+    a { text-decoration: none; }
+
+    /* ------------------------------
+       HEADER + NAVIGATION (Desktop)
+    --------------------------------*/
     header {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      z-index: 100;
       padding: 20px 40px;
-      box-sizing: border-box;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       background: transparent;
+      box-sizing: border-box;
     }
 
-    .logo img {
-      height: 70px;
-      width: auto;
-      transition: all 0.3s ease;
-    }
-
-    nav {
+    .desktop-nav {
       display: flex;
       gap: 20px;
-      align-items: center;
     }
 
-    nav a {
-      text-decoration: none;
+    .desktop-nav a {
       color: #ffffff;
       font-family: sans-serif;
       font-size: 16px;
       letter-spacing: 1px;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-      transition: opacity .2s;
     }
 
-    nav a:hover {
-      opacity: 0.7;
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
+      text-decoration: underline;
     }
 
-    /* --- HAMBURGER (MOBILE ONLY) --- */
-    .hamburger {
+    .logo img {
+      height: 70px;
+      width: auto;
+    }
+
+    /* ------------------------------
+       MOBILE BURGER MENU
+    --------------------------------*/
+    .mobile-menu-button {
       display: none;
-      flex-direction: column;
+      font-size: 30px;
+      color: #fff;
       cursor: pointer;
-      gap: 5px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
 
-    .hamburger span {
-      width: 28px;
-      height: 3px;
-      background-color: white;
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-
-    /* MOBILE NAV MENU */
-    #mobile-menu {
+    .mobile-nav {
       display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 80px;
-      right: 20px;
-      background: rgba(0,0,0,0.85);
-      padding: 20px;
-      border-radius: 10px;
-      z-index: 999;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100%;
+      background: rgba(255,255,255,0.97);
+      box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+      padding: 80px 30px;
+      box-sizing: border-box;
+      transition: right 0.3s ease;
     }
 
-    #mobile-menu a {
-      color: white;
-      text-decoration: none;
-      font-size: 16px;
-      padding: 10px 0;
-      text-align: right;
+    .mobile-nav.open {
+      right: 0;
+    }
+
+    .mobile-nav a {
+      display: block;
+      margin-bottom: 25px;
+      font-size: 22px;
+      color: #000;
       font-family: sans-serif;
     }
 
-    /* --- FULL SCREEN HERO --- */
+    /* ------------------------------
+       HERO SECTION
+    --------------------------------*/
     .full-screen-hero {
       height: 100vh;
       background-image: url('images/Bergvia home page.jpg');
@@ -103,171 +106,194 @@
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
-      display: flex;
-      align-items: stretch;
-    }
-
-    .hero-text-wrapper {
-      width: 100%;
-      height: 100%;
-      padding: 25vh 60px 18vh 300px; /* Desktop spacing */
+      color: #ffffff;
       box-sizing: border-box;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
 
-    .full-screen-hero h1 {
-      font-size: clamp(34px, 5.5vw, 78px);
-      color: white;
+    .hero-content {
+      position: absolute;
+      top: 22vh;
+      left: 300px;
+      right: 60px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.45);
+    }
+
+    .hero-content h1 {
       margin: 0;
+      font-weight: normal;
+      font-size: clamp(38px, 5.5vw, 80px);
       max-width: 1100px;
       line-height: 1.2;
-      text-shadow: 0 2px 5px rgba(0,0,0,0.5);
     }
 
-    .hero-footer-content hr {
+    .hero-footer {
+      position: absolute;
+      bottom: 60px;
+      left: 300px;
+      right: 300px;
+      text-shadow: none; /* REMOVE SHADOW */
+    }
+
+    .hero-footer hr {
       border: none;
       height: 1px;
-      background-color: rgba(255, 255, 255, 0.55);
+      background-color: rgba(255,255,255,0.6);
       margin-bottom: 20px;
-      width: 100%;
+    }
+
+    .hero-footer p {
+      margin: 0;
       max-width: 900px;
+      color: #ffffff;
+      font-size: clamp(16px, 1.4vw, 22px);
+      line-height: 1.45;
+      text-shadow: none !important; /* ---- OPTION A ---- */
     }
 
-    .hero-footer-content p {
-      max-width: 900px;
-      color: #000; /* readable on light areas */
-      text-align: justify;
-      font-size: clamp(15px, 1.5vw, 22px);
-      line-height: 1.4;
-      text-shadow: 0 1px 2px rgba(255,255,255,0.75);
-      background: rgba(255,255,255,0.4);
-      padding: 8px 12px;
-      border-radius: 4px;
-    }
-
-    /* Ensure hero text stays inside image on all laptops */
-    @media (min-width: 1200px) and (max-height: 850px) {
-      .hero-text-wrapper {
-        padding-bottom: 12vh;
-        padding-top: 20vh;
-      }
-    }
-
-    /* --- TABLET --- */
+    /* ------------------------------
+       RESPONSIVE BEHAVIOR
+    --------------------------------*/
     @media (max-width: 1024px) {
-      .hero-text-wrapper {
-        padding: 20vh 40px 14vh 120px;
+      .hero-content {
+        left: 120px;
+        right: 40px;
       }
-      .logo img { height: 60px; }
+      .hero-footer {
+        left: 120px;
+        right: 120px;
+      }
     }
 
-    /* --- MOBILE --- */
     @media (max-width: 768px) {
-      nav { display: none; }
-      .hamburger { display: flex; }
 
-      .logo img { height: 50px; }
+      .logo img {
+        height: 50px;
+      }
 
-      .hero-text-wrapper {
-        padding: 20vh 30px 12vh 30px;
+      .desktop-nav {
+        display: none;
+      }
+
+      .mobile-menu-button {
+        display: block;
+      }
+
+      .hero-content {
+        left: 30px;
+        right: 30px;
+        top: 18vh;
+      }
+
+      .hero-footer {
+        left: 30px;
+        right: 30px;
+        bottom: 30px;
       }
     }
 
-    /* --- SMALL MOBILE --- */
     @media (max-width: 480px) {
-      .logo img { height: 40px; }
-
-      .hero-text-wrapper {
-        padding: 18vh 20px 10vh 20px;
+      .logo img {
+        height: 42px;
+      }
+      .hero-content {
+        top: 20vh;
+        left: 20px;
+        right: 20px;
+      }
+      .hero-footer {
+        left: 20px;
+        right: 20px;
       }
     }
 
-    /* --- Footer --- */
+    /* ------------------------------
+       FOOTER
+    --------------------------------*/
     footer {
       text-align: center;
       padding: 40px 20px;
       background-color: #f8f8f8;
-      font-family: sans-serif;
       border-top: 1px solid #ddd;
+      font-family: sans-serif;
       font-size: 14px;
     }
+
     .footer-nav a {
-      text-decoration: none;
       margin: 0 15px;
       color: #555;
     }
-    .footer-nav a:hover { color: #000; }
-    .copyright { margin-top: 20px; color: #999; }
 
-    /* COOKIE BANNER */
-    #cookie-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #fff;
-      border-top: 1px solid #ddd;
-      padding: 20px;
-      text-align: center;
-      display: none;
-      z-index: 2000;
-      font-family: sans-serif;
-      font-size: 14px;
+    .footer-nav a:hover {
+      color: #000;
+    }
+
+    .copyright {
+      margin-top: 20px;
+      color: #777;
     }
   </style>
 </head>
 
 <body>
 
+  <!-- -----------------------------
+       HEADER
+  ---------------------------------->
   <header>
-    <div class="logo">
-      <a href="index.html">
-        <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Logo">
-      </a>
-    </div>
 
-    <!-- Desktop Navigation -->
-    <nav>
+    <!-- LEFT NAV (Desktop Only) -->
+    <nav class="desktop-nav">
       <a href="index.html" class="active">Home</a>
       <a href="about.html">About</a>
       <a href="investments.html">Investments</a>
       <a href="contacts.html">Contacts</a>
     </nav>
 
-    <!-- Hamburger Button -->
-    <div class="hamburger" onclick="toggleMobileMenu()">
-      <span></span><span></span><span></span>
+    <!-- LOGO -->
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Logo">
+      </a>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="investments.html">Investments</a>
-      <a href="contacts.html">Contacts</a>
-    </div>
+    <!-- BURGER (Mobile Only) -->
+    <div class="mobile-menu-button" onclick="toggleMobileMenu()">☰</div>
+
   </header>
 
-  <main>
-    <section class="full-screen-hero">
-      <div class="hero-text-wrapper">
+  <!-- MOBILE SLIDE-IN MENU -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="investments.html">Investments</a>
+    <a href="contacts.html">Contacts</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
 
-        <h1>Grounded in the Alps. Investing for Generations.</h1>
+  <!-- -----------------------------
+       HERO SECTION
+  ---------------------------------->
+  <section class="full-screen-hero">
 
-        <div class="hero-footer-content">
-          <hr>
-          <p>
-            Bergvia Family Office is a privately held investment company managing the assets and long-term interests of our family. Our approach combines disciplined, long-term capital allocation across public and private markets with an entrepreneurial mindset, directly acquiring and building operating businesses with strong growth potential. Through this blended strategy, we aim to create lasting value for future generations, the communities where we live, and the natural environment that sustains us.
-          </p>
-        </div>
+    <div class="hero-content">
+      <h1>Grounded in the Alps. Investing for Generations.</h1>
+    </div>
 
-      </div>
-    </section>
-  </main>
+    <div class="hero-footer">
+      <hr>
+      <p>
+        Bergvia Family Office is a privately held investment company managing the assets and long-term interests of our family.
+        Our approach combines disciplined, long-term capital allocation across public and private markets with an entrepreneurial mindset,
+        directly acquiring and building operating businesses with strong growth potential. Through this blended strategy, we aim to create
+        lasting value for future generations, the communities where we live, and the natural environment that sustains us.
+      </p>
+    </div>
 
+  </section>
+
+  <!-- -----------------------------
+       FOOTER
+  ---------------------------------->
   <footer>
     <div class="footer-nav">
       <a href="index.html">Home</a>
@@ -276,16 +302,16 @@
       <a href="contacts.html">Contacts</a>
       <a href="privacy.html">Privacy Policy</a>
     </div>
+
     <p class="copyright">
-      © 2025 Bergvia Family Office. All Rights Reserved.
+      © 2025, Bergvia Family Office. All Rights Reserved.<br>
+      Bergvia Family Office is a private investment company managing the assets of a single family.
     </p>
   </footer>
 
-  <!-- Script: Hamburger menu -->
   <script>
     function toggleMobileMenu() {
-      const menu = document.getElementById("mobile-menu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+      document.getElementById("mobileNav").classList.toggle("open");
     }
   </script>
 

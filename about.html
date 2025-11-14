@@ -15,7 +15,9 @@
       font-size: clamp(16px, 1.2vw, 18px);
     }
 
-    /* --- HEADER & NAVIGATION (MATCHES INDEX.HTML) --- */
+    /* -----------------------------------------
+       HEADER + NAV (Desktop)
+    ------------------------------------------*/
     header {
       position: absolute;
       top: 0;
@@ -61,7 +63,9 @@
       text-decoration: underline;
     }
 
-    /* Hamburger button (hidden on desktop) */
+  /* -----------------------------------------
+       MOBILE MENU BUTTON
+    ------------------------------------------*/
     .mobile-menu-button {
       display: none;
       font-size: 32px;
@@ -71,21 +75,29 @@
     }
 
     /* Mobile menu panel */
-    .mobile-menu {
+   mobile-nav {
       display: none;
-      flex-direction: column;
-      background: rgba(0,0,0,0.85);
-      position: absolute;
-      top: 100%;
-      right: 0;
-      padding: 20px 30px;
-      border-radius: 0 0 0 12px;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 70%;
+      height: 100%;
+      background: rgba(255,255,255,0.98);
+      padding: 80px 30px;
+      box-sizing: border-box;
+      transition: right 0.35s ease;
+      z-index: 2500; /* <-- FIX */
     }
 
-    .mobile-menu a {
-      color: #fff;
-      text-decoration: none;
-      margin: 10px 0;
+    .mobile-nav.open {
+      right: 0;
+    }
+
+    .mobile-nav a {
+      display: block;
+      margin-bottom: 25px;
+      font-size: 22px;
+      color: #000;
       font-family: sans-serif;
     }
 
@@ -100,7 +112,9 @@
       .logo img { height: 45px; }
     }
 
-    /* --- Hero Section --- */
+      /* -----------------------------------------
+       HERO SECTION
+    ------------------------------------------*/
     .page-hero {
       height: 70vh;
       min-height: 500px;
@@ -257,10 +271,9 @@
     </p>
   </footer>
 
-  <script>
+   <script>
     function toggleMobileMenu() {
-      const menu = document.getElementById("mobileMenu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+      document.getElementById("mobileNav").classList.toggle("open");
     }
   </script>
 

@@ -4,74 +4,83 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bergvia Family Office</title>
-
   <style>
+    /* --- General Body & Font Styles --- */
     body {
       font-family: "Georgia", serif;
-      margin: 0;
       background-color: #ffffff;
       color: #333;
+      margin: 0;
       line-height: 1.8;
+      font-size: clamp(16px, 1.2vw, 18px);
     }
-
     a { text-decoration: none; }
 
-    /* -----------------------------------------
-       HEADER + NAV (Desktop)
-    ------------------------------------------*/
+    /* --- HEADER & NAVIGATION (Copied from contacts.html) --- */
     header {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 2000; /* <-- FIX: ensure above hero image */
-      padding: 20px 40px;
+      z-index: 10;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: transparent;
+      padding: 20px 40px;
       box-sizing: border-box;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+      background: transparent;
     }
-
-    .desktop-nav {
+    nav {
       display: flex;
-      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
     }
-
-    .desktop-nav a {
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
       color: #ffffff;
       font-family: sans-serif;
       font-size: 16px;
       letter-spacing: 1px;
+      transition: color 0.3s;
       text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
-
-    .desktop-nav a:hover,
-    .desktop-nav a.active {
+    nav a:hover,
+    nav a.active {
+      color: #fff;
       text-decoration: underline;
     }
-
     .logo img {
       height: 70px;
       width: auto;
-      transition: 0.3s;
+      max-width: 100%;
+      transition: all 0.3s ease;
+      filter: brightness(0) invert(1);
     }
 
-    /* -----------------------------------------
-       MOBILE MENU BUTTON
-    ------------------------------------------*/
+    /* --- Mobile Adjustments for header (Copied from contacts.html) --- */
+    @media (max-width: 768px) {
+      header { flex-direction: row; justify-content: space-between; padding: 15px 20px; }
+      nav { display: none; } /* Hides desktop nav on mobile */
+      .mobile-menu-button { display: block; }
+      .logo img { height: 50px; }
+    }
+    @media (max-width: 480px) {
+      .logo img { height: 42px; }
+    }
+
+    /* --- MOBILE MENU (Copied & Corrected) --- */
     .mobile-menu-button {
       display: none;
       font-size: 32px;
       cursor: pointer;
       color: #ffffff;
       text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-      z-index: 2000; /* <-- FIX */
+      z-index: 3000;
     }
-
-    /* -----------------------------------------
-       MOBILE NAVIGATION
-    ------------------------------------------*/
     .mobile-nav {
       display: none;
       position: fixed;
@@ -83,35 +92,14 @@
       padding: 80px 30px;
       box-sizing: border-box;
       transition: right 0.35s ease;
-      z-index: 2500; /* <-- FIX */
+      z-index: 2500;
     }
+    .mobile-nav.open { right: 0; }
+    .mobile-nav a { display: block; margin-bottom: 25px; font-size: 22px; color: #000; font-family: sans-serif; }
+    .mobile-menu-close { position: absolute; top: 20px; right: 30px; font-size: 40px; color: #000; cursor: pointer; font-family: sans-serif; font-weight: 300; }
 
-    .mobile-nav.open {
-      right: 0;
-    }
 
-    .mobile-nav a {
-      display: block;
-      margin-bottom: 25px;
-      font-size: 22px;
-      color: #000;
-      font-family: sans-serif;
-    }
-    
-.mobile-menu-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 40px;
-  color: #000;
-  cursor: pointer;
-  font-family: sans-serif;
-  font-weight: 300;
-}
-    
-    /* -----------------------------------------
-       HERO SECTION
-    ------------------------------------------*/
+    /* --- Full Screen Hero Section --- */
     .full-screen-hero {
       height: 100vh;
       background-image: url('images/Bergvia home page.jpg');
@@ -119,16 +107,13 @@
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
-      color: #ffffff;
     }
-
     .hero-content {
       position: absolute;
       top: 22vh;
       left: 300px;
       right: 60px;
     }
-
     .hero-content h1 {
       margin: 0;
       font-weight: normal;
@@ -136,146 +121,83 @@
       max-width: 1100px;
       line-height: 1.2;
       text-shadow: 0 2px 5px rgba(0,0,0,0.45);
+      color: #ffffff;
     }
-
     .hero-footer {
       position: absolute;
       bottom: 60px;
       left: 300px;
       right: 300px;
     }
-
-    .hero-footer hr {
-      border: none;
-      height: 1px;
-      background-color: rgba(255,255,255,0.65);
-      margin-bottom: 20px;
-    }
-
+    .hero-footer hr { border: none; height: 1px; background-color: rgba(255,255,255,0.65); margin-bottom: 20px; }
     .hero-footer p {
       margin: 0;
       max-width: 900px;
       font-size: clamp(16px, 1.4vw, 22px);
       line-height: 1.45;
-      color: #000000 !important; /* <-- FIX: BLACK TEXT */
-      text-shadow: none !important; /* ensure clean readability */
+      color: #000000;
+      text-shadow: none;
     }
 
-    /* -----------------------------------------
-       RESPONSIVE BEHAVIOR
-    ------------------------------------------*/
+    /* --- Responsive Behavior --- */
     @media (max-width: 1024px) {
       .hero-content { left: 120px; right: 40px; }
       .hero-footer { left: 120px; right: 120px; }
     }
-
     @media (max-width: 768px) {
-      .desktop-nav { display: none; }
-      .mobile-menu-button { display: block; }
-
-      .logo img { height: 50px; }
-
-      .mobile-nav { display: block; }
-
-      .hero-content {
-        top: 18vh;
-        left: 30px;
-        right: 30px;
-      }
-
-      .hero-footer {
-        left: 30px;
-        right: 30px;
-        bottom: 30px;
-      }
+      .hero-content { top: 18vh; left: 30px; right: 30px; }
+      .hero-footer { left: 30px; right: 30px; bottom: 30px; }
     }
-
     @media (max-width: 480px) {
-      .logo img { height: 42px; }
       .hero-content { top: 20vh; left: 20px; right: 20px; }
       .hero-footer { left: 20px; right: 20px; }
     }
 
-    /* -----------------------------------------
-       FOOTER
-    ------------------------------------------*/
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      background-color: #f8f8f8;
-      border-top: 1px solid #ddd;
-      font-family: sans-serif;
-      font-size: 14px;
-    }
-
-    .footer-nav a {
-      margin: 0 15px;
-      color: #555;
-    }
-
+    /* --- Footer --- */
+    footer { text-align: center; padding: 40px 20px; background-color: #f8f8f8; border-top: 1px solid #ddd; font-family: sans-serif; font-size: 14px; }
+    .footer-nav a { margin: 0 15px; color: #555; }
     .footer-nav a:hover { color: #000; }
-
-    .copyright {
-      margin-top: 20px;
-      color: #777;
-    }
+    .copyright { margin-top: 20px; color: #777; }
   </style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-<header>
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Logo">
+      </a>
+    </div>
+    <nav class="desktop-nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="investments.html">Investments</a>
+      <a href="contacts.html">Contacts</a>
+    </nav>
+    <div class="mobile-menu-button" onclick="toggleMobileMenu()">☰</div>
+  </header>
 
-  <!-- Logo on the LEFT -->
-  <div class="logo">
-    <a href="index.html">
-      <img src="images/Bergvia_Logo_Black.png" alt="Bergvia Logo">
-    </a>
-  </div>
-
-  <!-- Desktop Menu on the RIGHT -->
-  <nav class="desktop-nav">
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="investments.html">Investments</a>
-    <a href="contacts.html">Contacts</a>
-  </nav>
-
-  <!-- Burger (unchanged) -->
-  <div class="mobile-menu-button" onclick="toggleMobileMenu()">☰</div>
-
-</header>
-
-  <!-- Mobile Slide-in Menu -->
   <div class="mobile-nav" id="mobileNav">
-    <div class="mobile-menu-close" onclick="toggleMobileMenu()">×</div
+    <div class="mobile-menu-close" onclick="toggleMobileMenu()">×</div>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="investments.html">Investments</a>
     <a href="contacts.html">Contacts</a>
+    <a href="privacy.html">Privacy</a>
   </div>
 
-  <!-- HERO -->
   <section class="full-screen-hero">
-
     <div class="hero-content">
       <h1>Grounded in the Alps. Investing for Generations.</h1>
     </div>
-
     <div class="hero-footer">
       <hr>
       <p>
-        Bergvia Family Office is a privately held investment company managing the assets and long-term interests of our family.
-        Our approach combines disciplined, long-term capital allocation across public and private markets with an entrepreneurial mindset,
-        directly acquiring and building operating businesses with strong growth potential. Through this blended strategy, we aim to create
-        lasting value for future generations, the communities where we live and the natural environment that sustains us.
+        Bergvia Family Office is a privately held investment company managing the assets and long-term interests of our family. Our approach combines disciplined, long-term capital allocation across public and private markets with an entrepreneurial mindset, directly acquiring and building operating businesses with strong growth potential. Through this blended strategy, we aim to create lasting value for future generations, the communities where we live, and the natural environment that sustains us.
       </p>
     </div>
-
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-nav">
       <a href="index.html">Home</a>
